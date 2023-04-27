@@ -7,10 +7,8 @@ import com.shop.HobbyStore.repository.ProductRepository;
 import com.shop.HobbyStore.service.services.ProductService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductManager implements ProductService {
@@ -34,65 +32,93 @@ public class ProductManager implements ProductService {
 
     @Override
     public String findTotalPrice(List<PurchasedProduct> purchasedProducts) {
-
         Map<Integer, PurchasedProduct> purchasedProductMap = getPurchasedProductMap(purchasedProducts);
-
         if (purchasedProductMap.isEmpty()) {
             return "total price: " + 0;
         }
 
         List<Integer> productIds = new ArrayList<>(purchasedProductMap.keySet());
         List<Product> products = productRepository.findAllById(productIds);
-        List<Book> purchasedBooks = new ArrayList<>();
+        List<Product> books = findPurchasedBooks(products);
 
-        double totalPrice = 0;
-        int bookCount = 0;
-        int itemCount = products.size();
+        double totalPrice = findTotalAmount(products);
 
-        for (var product : products) {
-            String productType = product.getDiscriminatorType();
-            if (productType.equalsIgnoreCase("Book")) {
-                purchasedBooks.add((Book) product);
-                bookCount++;
-            }
+        double twoItemCampaignDiscountAmount = products.size() > 2 ? calculateTwoItemsDiscount(products) : 0d;
+        double twoBooksCampaignDiscountAmount = books.size() > 2 ? calculateTwoBooksDiscount(books) : 0d;
 
-            int count = purchasedProductMap.get(product.getProductId()).getCount();
-            totalPrice += product.getFinalPrice() * count;
+        return "total   : " + (totalPrice - Math.max(twoBooksCampaignDiscountAmount, twoItemCampaignDiscountAmount));
+    }
+
+    private List<Product> findPurchasedBooks(List<Product> products) {
+        return products.stream()
+                .filter(product -> product.getDiscriminatorType().equalsIgnoreCase("Book"))
+                .collect(Collectors.toList());
+    }
+
+    private double findTotalAmount(List<Product> products) {
+        return products.stream().mapToDouble(Product::getFinalPrice).sum();
+    }
+
+    private double calculateTwoItemsDiscount(List<Product> products) {
+        return findCheapestProductPrice(products) / 2;
+    }
+
+    private double calculateTwoBooksDiscount(List<Product> books) {
+        return findCheapestProductPrice(books);
+    }
+
+    private double findCheapestProductPrice(List<Product> products) {
+        return products.stream()
+                .min(Comparator.comparingDouble(Product::getFinalPrice))
+                .map(Product::getFinalPrice)
+                .orElse(0d);
+    }
+
+    private String discountedPrice(List<Product> products, List<Book> purchasedBooks, double totalPrice, int bookCount) {
+        double productDiscount = findLowestPriceProduct(products).getFinalPrice();
+        Product lowestPriceProduct = findLowestPriceProduct(products);
+        findLowestPriceProduct(products);
+
+        double totalProductPrice = totalPrice - productDiscount;
+        double productDiscountRate = productDiscount / totalPrice;
+        if (bookCount >= 2) {
+            return calculateBookDiscount(purchasedBooks, totalPrice, totalProductPrice, productDiscountRate);
         }
+        return "total product price: " + totalProductPrice;
+    }
 
-        if (itemCount >= 2) {
-            Product lowestPriceProduct = products.get(0);
-            double productDiscount = 0;
-            for (Product product : products) {
-                if (product.getFinalPrice() < lowestPriceProduct.getFinalPrice()) {
-                    lowestPriceProduct = product;
-                    productDiscount = (lowestPriceProduct.getFinalPrice() * 0.5);
-                }
-            }
-            double totalProductPrice = totalPrice - productDiscount;
-            double productDiscountRate = productDiscount / totalPrice;
+    private String calculateBookDiscount(List<Book> purchasedBooks, double totalPrice, double totalProductPrice, double productDiscountRate) {
+        double bookDiscount = findLowestPriceBook(purchasedBooks).getFinalPrice();
+        Book lowestPriceBook = findLowestPriceBook(purchasedBooks);
 
-            if (bookCount >= 2) {
-                double bookDiscount = 0;
-                Product lowestPriceBook = purchasedBooks.get(0);
-                for (Book book : purchasedBooks) {
-                    if (book.getFinalPrice() < lowestPriceBook.getFinalPrice()) {
-                        lowestPriceBook = book;
-                        bookDiscount = lowestPriceBook.getFinalPrice();
-                    }
-                }
-                double totalBookPrice = totalPrice - bookDiscount;
-                double bookDiscountRate = bookDiscount / totalPrice;
-
-                if (bookDiscountRate > productDiscountRate) {
-                    return "total book price: " + totalBookPrice;
-                } else {
-                    return "total product price: " + totalProductPrice;
-                }
-            }
+        double totalBookPrice = totalPrice - bookDiscount;
+        double bookDiscountRate = bookDiscount / totalPrice;
+        if (bookDiscountRate > productDiscountRate) {
+            return "total book price: " + totalBookPrice;
+        } else {
             return "total product price: " + totalProductPrice;
         }
-        return "total: " + totalPrice;
+    }
+
+
+    private Book findLowestPriceBook(List<Book> purchasedBooks) {
+        Book lowestPriceBook = purchasedBooks.get(0);
+        for (Book book : purchasedBooks) {
+            if (book.getFinalPrice() < lowestPriceBook.getFinalPrice()) {
+                lowestPriceBook = book;
+            }
+        }
+        return lowestPriceBook;
+    }
+
+    private Product findLowestPriceProduct(List<Product> products) {
+        Product lowestPriceProduct = products.get(0);
+        for (Product product : products) {
+            if (product.getFinalPrice() < lowestPriceProduct.getFinalPrice()) {
+                lowestPriceProduct = product;
+            }
+        }
+        return lowestPriceProduct;
     }
 
 
@@ -100,11 +126,11 @@ public class ProductManager implements ProductService {
 
         Map<Integer, PurchasedProduct> purchasedProductMap = new HashMap<>();
 
-        if (purchasedProducts == null || purchasedProducts.isEmpty())   {
+        if (purchasedProducts == null || purchasedProducts.isEmpty()) {
             return purchasedProductMap;
         }
 
-        for (var product : purchasedProducts)   {
+        for (var product : purchasedProducts) {
             if (product == null || purchasedProductMap.containsKey(product.getProductId())) {
                 continue;
             }
@@ -114,9 +140,9 @@ public class ProductManager implements ProductService {
         return purchasedProductMap;
     }
 
-    private List<Integer> getProductIds(List<PurchasedProduct> purchasedProducts)   {
+    private List<Integer> getProductIds(List<PurchasedProduct> purchasedProducts) {
         List<Integer> productIds = new ArrayList<>();
-        for (var purchasedProduct : purchasedProducts)  {
+        for (var purchasedProduct : purchasedProducts) {
             productIds.add(purchasedProduct.getProductId());
         }
         return productIds;
