@@ -21,7 +21,12 @@ public class SaleManager implements SaleService {
     }
 
     @Override
-    public Sale saveSale(Sale sale) {
-        return saleRepository.save(sale);
+    public Sale findSaleById(int id) {
+        return saleRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteSale(int id) {
+        saleRepository.deleteById(id);
     }
 }

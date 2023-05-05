@@ -2,7 +2,6 @@ package com.shop.HobbyStore.controller;
 
 import com.shop.HobbyStore.entities.Product;
 import com.shop.HobbyStore.entities.PurchasedProduct;
-import com.shop.HobbyStore.entities.Sale;
 import com.shop.HobbyStore.service.services.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

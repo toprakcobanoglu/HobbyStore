@@ -16,6 +16,7 @@ public class ProductManager implements ProductService {
     private final ProductRepository productRepository;
     private final SaleRepository saleRepository;
 
+
     public ProductManager(ProductRepository productRepository, SaleRepository saleRepository) {
         this.productRepository = productRepository;
         this.saleRepository = saleRepository;
@@ -31,7 +32,6 @@ public class ProductManager implements ProductService {
         List<Integer> productIds = getProductIds(purchasedProducts);
         return productRepository.findAllById(productIds);
     }
-
 
     @Override
     public String findTotalPrice(List<PurchasedProduct> purchasedProducts) {
@@ -53,6 +53,11 @@ public class ProductManager implements ProductService {
         double finalTotalPrice = (totalPrice - Math.max(twoBooksCampaignDiscountAmount, twoItemCampaignDiscountAmount));
         double pureProfit = finalTotalPrice - sumEarlyBirdPrice;
 
+        Sale sale = new Sale();
+        sale.setFinalTotalPrice(finalTotalPrice);
+        sale.setPureProfit(pureProfit);
+        saleRepository.save(sale);
+
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Product product : products)    {
@@ -62,6 +67,7 @@ public class ProductManager implements ProductService {
         stringBuilder.append("Total : ").append(finalTotalPrice).append("\n");
         return stringBuilder.toString();
     }
+
 
     private List<Product> findPurchasedBooks(List<Product> products) {
         return products.stream()

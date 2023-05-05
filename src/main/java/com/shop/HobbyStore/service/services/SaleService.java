@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface SaleService {
     List<Sale> findAllSales();
-    Sale saveSale(Sale sale);
+    Sale findSaleById(int id);
+    void deleteSale(int id);
 }
