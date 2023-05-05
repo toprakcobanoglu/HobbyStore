@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.service.concretes;
 
-import com.shop.HobbyStore.entities.Book;
+import com.shop.HobbyStore.entities.model.Book;
 import com.shop.HobbyStore.repository.BookRepository;
 import com.shop.HobbyStore.service.services.BookService;
 import org.springframework.stereotype.Service;

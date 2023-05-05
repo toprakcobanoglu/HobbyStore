@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.controller;
 
-import com.shop.HobbyStore.entities.Book;
+import com.shop.HobbyStore.entities.model.Book;
 import com.shop.HobbyStore.service.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

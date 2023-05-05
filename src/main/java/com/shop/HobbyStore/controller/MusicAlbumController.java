@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.controller;
 
-import com.shop.HobbyStore.entities.MusicAlbum;
+import com.shop.HobbyStore.entities.model.MusicAlbum;
 import com.shop.HobbyStore.service.services.MusicAlbumService;
 import org.springframework.web.bind.annotation.*;
 

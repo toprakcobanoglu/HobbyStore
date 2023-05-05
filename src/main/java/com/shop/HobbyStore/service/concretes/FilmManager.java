@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.service.concretes;
 
-import com.shop.HobbyStore.entities.Film;
+import com.shop.HobbyStore.entities.model.Film;
 import com.shop.HobbyStore.repository.FilmRepository;
 import com.shop.HobbyStore.service.services.FilmService;
 import org.springframework.stereotype.Service;

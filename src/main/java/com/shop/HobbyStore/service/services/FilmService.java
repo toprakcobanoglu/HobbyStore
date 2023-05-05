@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.service.services;
 
-import com.shop.HobbyStore.entities.Film;
+import com.shop.HobbyStore.entities.model.Film;
 
 import java.util.List;
 

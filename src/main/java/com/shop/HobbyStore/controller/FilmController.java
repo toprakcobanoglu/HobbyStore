@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.controller;
 
-import com.shop.HobbyStore.entities.Film;
+import com.shop.HobbyStore.entities.model.Film;
 import com.shop.HobbyStore.service.services.FilmService;
 import org.springframework.web.bind.annotation.*;
 

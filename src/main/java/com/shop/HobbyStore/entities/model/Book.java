@@ -1,5 +1,6 @@
-package com.shop.HobbyStore.entities;
+package com.shop.HobbyStore.entities.model;
 
+import com.shop.HobbyStore.entities.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +23,9 @@ public class Book extends Product {
     @Override
     public double getFinalPrice() {
         return getBasePrice() + 2;
+    }
+    @Override
+    public double getPureProfit()   {
+        return getFinalPrice() - getEarlyBirdPrice();
     }
 }

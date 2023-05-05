@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.service.services;
 
-import com.shop.HobbyStore.entities.MusicAlbum;
+import com.shop.HobbyStore.entities.model.MusicAlbum;
 
 import java.util.List;
 

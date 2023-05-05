@@ -1,0 +1,27 @@
+package com.shop.HobbyStore.service.concretes;
+
+import com.shop.HobbyStore.entities.Sale;
+import com.shop.HobbyStore.repository.SaleRepository;
+import com.shop.HobbyStore.service.services.SaleService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class SaleManager implements SaleService {
+    private final SaleRepository saleRepository;
+
+    public SaleManager(SaleRepository saleRepository) {
+        this.saleRepository = saleRepository;
+    }
+
+    @Override
+    public List<Sale> findAllSales() {
+        return saleRepository.findAll();
+    }
+
+    @Override
+    public Sale saveSale(Sale sale) {
+        return saleRepository.save(sale);
+    }
+}

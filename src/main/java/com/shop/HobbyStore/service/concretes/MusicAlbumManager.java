@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.service.concretes;
 
-import com.shop.HobbyStore.entities.MusicAlbum;
+import com.shop.HobbyStore.entities.model.MusicAlbum;
 import com.shop.HobbyStore.repository.MusicAlbumRepository;
 import com.shop.HobbyStore.service.services.MusicAlbumService;
 import org.springframework.stereotype.Service;

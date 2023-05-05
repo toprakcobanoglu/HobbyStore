@@ -1,6 +1,6 @@
 package com.shop.HobbyStore.repository;
 
-import com.shop.HobbyStore.entities.MusicAlbum;
+import com.shop.HobbyStore.entities.model.MusicAlbum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
