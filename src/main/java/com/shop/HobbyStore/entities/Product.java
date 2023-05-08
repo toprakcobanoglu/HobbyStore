@@ -38,4 +38,6 @@ public abstract class Product {
     }
 
     public abstract double getPureProfit();
+
+    //public abstract double getPureProfit();
 }
