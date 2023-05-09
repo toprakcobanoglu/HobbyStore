@@ -2,6 +2,7 @@ package com.shop.HobbyStore.controller;
 
 import com.shop.HobbyStore.entities.model.MusicAlbum;
 import com.shop.HobbyStore.service.services.MusicAlbumService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,12 @@ public class MusicAlbumController {
     }
 
     @GetMapping
-    public List<MusicAlbum> findAllMusicAlbum() {
-        return musicAlbumService.findAllMusicAlbum();
+    public List<MusicAlbum> findAllMusicAlbum(Model model) {
+        List<MusicAlbum> musicAlbums = musicAlbumService.findAllMusicAlbum();
+        model.addAttribute("album-list" , musicAlbums);
+        return musicAlbums;
+
+        //return musicAlbumService.findAllMusicAlbum();
     }
     @GetMapping("{id}")
     public MusicAlbum findMusicAlbumById(@PathVariable("id")int id) {

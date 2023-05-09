@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmler</title>
+    <base href="http://localhost8080/">
+</head>
+<body>
+<h1>Filmler</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Ürün Adı</th>
+        <th>Tür</th>
+        <th>Çıkış Tarihi</th>
+        <th>Fiyat</th>
+        <th>Yönetmen Adı</th>
+        <th>IMDB Skoru</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="films : ${films}">
+        <td th:text="${film.name}"></td>
+        <td th:text="${film.genre}"></td>
+        <td th:text="${film.releaseDate}"></td>
+        <td th:text="${film.basePrice}"></td>
+        <td th:text="${film.directorName}"></td>
+        <td th:text="${film.imdbRate}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.shop.HobbyStore.controller;
 
 import com.shop.HobbyStore.entities.model.Film;
 import com.shop.HobbyStore.service.services.FilmService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,12 @@ public class FilmController {
     }
 
     @GetMapping
-    public List<Film> findAllFilm() {
-        return filmService.findAllFilm();
+    public List<Film> findAllFilm(Model model) {
+        List<Film> films = filmService.findAllFilm();
+        model.addAttribute("film-list" , films);
+        return films;
+
+        //return filmService.findAllFilm();
     }
     @GetMapping("{id}")
     public Film findFilmById(@PathVariable("id")int id) {

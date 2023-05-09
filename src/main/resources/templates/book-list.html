@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitaplar</title>
+    <base href="http://localhost:8080/">
+</head>
+<body>
+<h1>Kitaplar</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Ürün Adı</th>
+        <th>Tür</th>
+        <th>Çıkış Tarihi</th>
+        <th>Fiyat</th>
+        <th>Yazar Adı</th>
+        <th>ISBN Numarası</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.name}"></td>
+        <td th:text="${book.genre}"></td>
+        <td th:text="${book.releaseDate}"></td>
+        <td th:text="${book.basePrice}"></td>
+        <td th:text="${book.authorName}"></td>
+        <td th:text="${book.isbnNumber}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
