@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Müzik Albümleri</title>
   <base href="http://localhost:8080/">
+  <link rel="stylesheet" type="text/css" href="/listStyle.css">
 </head>
 <body>
 <h1>Müzik Albümleri</h1>
@@ -19,15 +20,17 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="musicAlbum : ${musicAlbums}">
+  <tr th:each="musicAlbum, status : ${musicAlbums}" th:class="${status.odd}? 'odd-row' : 'even-row'">
     <td th:text="${musicAlbum.name}"></td>
     <td th:text="${musicAlbum.genre}"></td>
     <td th:text="${musicAlbum.releaseDate}"></td>
     <td th:text="${musicAlbum.basePrice}"></td>
     <td th:text="${musicAlbum.singerName}"></td>
     <td th:text="${musicAlbum.numberOfSongs}"></td>
+    <td class="button-cell"><button class="deleteButton">Sil</button></td>
   </tr>
   </tbody>
 </table>
+<button id="addMusicAlbumButton" class="addButton" onclick="saveMusicAlbum()">Albüm Ekle</button>
 </body>
 </html>

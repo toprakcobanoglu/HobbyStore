@@ -4,6 +4,7 @@ import com.shop.HobbyStore.entities.model.Film;
 import com.shop.HobbyStore.service.services.FilmService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -17,13 +18,12 @@ public class FilmController {
     }
 
     @GetMapping
-    public List<Film> findAllFilm(Model model) {
+    public ModelAndView findAllBooks(Model model)   {
         List<Film> films = filmService.findAllFilm();
-        model.addAttribute("film-list" , films);
-        return films;
-
-        //return filmService.findAllFilm();
+        model.addAttribute("films" , films);
+        return new ModelAndView("film-list");
     }
+
     @GetMapping("{id}")
     public Film findFilmById(@PathVariable("id")int id) {
         return filmService.findFilmById(id);

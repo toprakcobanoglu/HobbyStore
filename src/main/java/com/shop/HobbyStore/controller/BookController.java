@@ -5,6 +5,7 @@ import com.shop.HobbyStore.service.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -19,13 +20,12 @@ public class BookController {
         this.bookService = bookService;
     }
     @GetMapping
-    public List<Book> findAllBooks(Model model)    {
+    public ModelAndView findAllBooks(Model model)   {
         List<Book> books = bookService.findAllBooks();
-        model.addAttribute("book-list" , books);
-        return books;
-
-        //return bookService.findAllBooks();
+        model.addAttribute("books" , books);
+        return new ModelAndView("book-list");
     }
+
     @GetMapping("{id}")
     public Book findBookById(@PathVariable("id")int id) {
         return bookService.findBookById(id);
