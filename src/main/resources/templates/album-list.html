@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Müzik Albümleri</title>
   <base href="http://localhost:8080/">
-  <link rel="stylesheet" type="text/css" href="/listStyle.css">
+  <link rel="stylesheet" type="text/css" href="/albumStyle.css">
 </head>
 <body>
 <h1>Müzik Albümleri</h1>
@@ -27,10 +27,32 @@
     <td th:text="${musicAlbum.basePrice}"></td>
     <td th:text="${musicAlbum.singerName}"></td>
     <td th:text="${musicAlbum.numberOfSongs}"></td>
+    <td class="button-cell"><button class="editButton">Düzenle</button> </td>
     <td class="button-cell"><button class="deleteButton">Sil</button></td>
+
   </tr>
   </tbody>
 </table>
-<button id="addMusicAlbumButton" class="addButton" onclick="saveMusicAlbum()">Albüm Ekle</button>
+<form id="addAlbumForm">
+  <label for="name">Ürün Adı</label>
+  <input type="text" id="name" name="name">
+
+  <label for="genre">Tür</label>
+  <input type="text" id="genre" name="genre">
+
+  <label for="releaseDate">Çıkış Tarihi</label>
+  <input type="text" id="releaseDate" name="releaseDate">
+
+  <label for="basePrice">Fiyat</label>
+  <input type="number" id="basePrice" name="basePrice">
+
+  <label for="singerName">Müzisyen/Grup Adı</label>
+  <input type="text" id="singerName" name="singerName">
+
+  <label for="numberOfSongs">Albumdeki Şarkı Sayısı</label>
+  <input type="number" id="numberOfSongs" name="numberOfSongs">
+
+  <button id="addAlbumButton" class="addButton" onclick="addAlbumForm()">Albüm Ekle</button>
+</form>
 </body>
 </html>

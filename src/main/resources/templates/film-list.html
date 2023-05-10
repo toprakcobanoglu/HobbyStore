@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Filmler</title>
     <base href="http://localhost:8080/">
-    <link rel="stylesheet" type="text/css" href="/listStyle.css">
+    <link rel="stylesheet" type="text/css" href="/filmStyle.css">
 </head>
 <body>
 <h1>Filmler</h1>
@@ -28,10 +28,32 @@
         <td th:text="${film.basePrice}"></td>
         <td th:text="${film.directorName}"></td>
         <td th:text="${film.imdbRate}"></td>
+        <td class="button-cell"><button class="editButton">Düzenle</button> </td>
         <td class="button-cell"><button class="deleteButton">Sil</button></td>
+
     </tr>
     </tbody>
 </table>
-<button id="addFilmButton" class="addButton" onclick="saveFilm()">Film Ekle</button>
+<form id="addFilmForm">
+    <label for="name">Ürün Adı</label>
+    <input type="text" id="name" name="name">
+
+    <label for="genre">Tür</label>
+    <input type="text" id="genre" name="genre">
+
+    <label for="releaseDate">Çıkış Tarihi</label>
+    <input type="text" id="releaseDate" name="relaseDate">
+
+    <label for="basePrice">Fiyat</label>
+    <input type="number" id="basePrice" name="basePrice">
+
+    <label for="directorName">Yönetmen Adı</label>
+    <input type="text" id="directorName" name="directorName">
+
+    <label for="imdbRate">IMDB Skoru</label>
+    <input type="number" id="imdbRate" name="imdbRate">
+
+    <button id="addFilmButton" class="addButton" onclick="addFilmForm()">Film Ekle</button>
+</form>
 </body>
 </html>

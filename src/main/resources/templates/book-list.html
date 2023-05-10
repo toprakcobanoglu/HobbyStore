@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Kitaplar</title>
     <base href="http://localhost:8080/">
-    <link rel="stylesheet" type="text/css" href="/listStyle.css">
+    <link rel="stylesheet" type="text/css" href="/bookStyle.css">
 </head>
 <body>
 <h1>Kitaplar</h1>
@@ -28,32 +28,33 @@
         <td th:text="${book.basePrice}"></td>
         <td th:text="${book.authorName}"></td>
         <td th:text="${book.isbnNumber}"></td>
-        <td class="button-cell"><button class="deleteButton" onclick="deleteBook(${book.productId})">Sil</button></td>
+        <td class="button-cell"><button class="editButton">Düzenle</button> </td>
+        <td class="button-cell"><button class="deleteButton">Sil</button></td>
+
     </tr>
     </tbody>
 </table>
 <form id="addBookForm">
-    <label for="name">Urun adi</label>
-    <input type="text" id="name" name="name"><br>
+    <label for="name">Ürün Adı</label>
+    <input type="text" id="name" name="name">
 
-    <label for="genre">Tur</label>
-    <input type="text" id="genre" name="genre"><br>
+    <label for="genre">Tür</label>
+    <input type="text" id="genre" name="genre">
 
-    <label for="releaseDate">Cikis Tarihi</label>
+    <label for="releaseDate">Çıkış Tarihi</label>
     <input type="text" id="releaseDate" name="releaseDate">
 
     <label for="basePrice">Fiyat</label>
-    <input type="text" id="basePrice" name="basePrice">
+    <input type="number" id="basePrice" name="basePrice">
 
-    <label for="authorName">Yazar Ismi</label>
+    <label for="authorName">Yazar Adı</label>
     <input type="text" id="authorName" name="authorName">
 
-    <label for="isbnNumber">ISBN Numarasi</label>
-    <input type="text" id="isbnNumber" name="isbnNumber">
+    <label for="isbnNumber">ISBN Numarası</label>
+    <input type="number" id="isbnNumber" name="isbnNumber">
 
-    <button id="addBookButton" class="addButton" onclick="saveBook">Kitap Ekle</button>
-
+    <button id="addBookButton" class="addButton" onclick="addBookForm()">Kitap Ekle</button>
 </form>
-<script src="/saveBook.js"></script>
+<script src="crudBook.js"></script>
 </body>
 </html>
