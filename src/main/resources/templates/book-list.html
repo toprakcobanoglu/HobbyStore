@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Kitaplar</title>
     <base href="http://localhost:8080/">
-    <link rel="stylesheet" type="text/css" href="/bookStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/bookStyle.css">
 </head>
 <body>
 <h1>Kitaplar</h1>
@@ -17,7 +17,6 @@
         <th>Fiyat</th>
         <th>Yazar Adı</th>
         <th>ISBN Numarası</th>
-        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -30,7 +29,6 @@
         <td th:text="${book.isbnNumber}"></td>
         <td class="button-cell"><button class="editButton">Düzenle</button> </td>
         <td class="button-cell"><button class="deleteButton">Sil</button></td>
-
     </tr>
     </tbody>
 </table>
@@ -53,8 +51,8 @@
     <label for="isbnNumber">ISBN Numarası</label>
     <input type="number" id="isbnNumber" name="isbnNumber">
 
-    <button id="addBookButton" class="addButton" onclick="addBookForm()">Kitap Ekle</button>
+    <button id="addBookButton" class="addButton">Kitap Ekle</button>
+    <script src="script/scriptBook/addBook.js"></script>
 </form>
-<script src="crudBook.js"></script>
 </body>
 </html>

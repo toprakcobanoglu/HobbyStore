@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Filmler</title>
     <base href="http://localhost:8080/">
-    <link rel="stylesheet" type="text/css" href="/filmStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/filmStyle.css">
 </head>
 <body>
 <h1>Filmler</h1>
@@ -17,7 +17,6 @@
         <th>Fiyat</th>
         <th>Yönetmen Adı</th>
         <th>IMDB Skoru</th>
-        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -51,9 +50,10 @@
     <input type="text" id="directorName" name="directorName">
 
     <label for="imdbRate">IMDB Skoru</label>
-    <input type="number" id="imdbRate" name="imdbRate">
+    <input type="number" step="any" id="imdbRate" name="imdbRate">
 
-    <button id="addFilmButton" class="addButton" onclick="addFilmForm()">Film Ekle</button>
+    <button id="addFilmButton" class="addButton">Film Ekle</button>
+    <script src="script/scriptFilm/addFilm.js"></script>
 </form>
 </body>
 </html>

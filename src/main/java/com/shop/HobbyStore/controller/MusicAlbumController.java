@@ -28,7 +28,7 @@ public class MusicAlbumController {
     public MusicAlbum findMusicAlbumById(@PathVariable("id")int id) {
         return musicAlbumService.findMusicAlbumById(id);
     }
-    @PostMapping
+    @PostMapping("/saveMusicAlbum")
     public MusicAlbum saveMusicAlbum(@RequestBody MusicAlbum musicAlbum)    {
         return musicAlbumService.saveMusicAlbum(musicAlbum);
     }

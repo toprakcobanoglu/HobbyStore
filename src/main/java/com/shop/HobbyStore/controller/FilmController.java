@@ -2,6 +2,7 @@ package com.shop.HobbyStore.controller;
 
 import com.shop.HobbyStore.entities.model.Film;
 import com.shop.HobbyStore.service.services.FilmService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +14,7 @@ import java.util.List;
 public class FilmController {
     private final FilmService filmService;
 
+    @Autowired
     public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
@@ -28,7 +30,7 @@ public class FilmController {
     public Film findFilmById(@PathVariable("id")int id) {
         return filmService.findFilmById(id);
     }
-    @PostMapping
+    @PostMapping("/saveFilm")
     public Film saveFilm(@RequestBody Film film)    {
         return filmService.saveFilm(film);
     }

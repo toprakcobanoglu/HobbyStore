@@ -30,7 +30,7 @@ public class BookController {
     public Book findBookById(@PathVariable("id")int id) {
         return bookService.findBookById(id);
     }
-    @PostMapping
+    @PostMapping("/saveBook")
     public Book saveBook(@RequestBody Book book)    {
         return bookService.saveBook(book);
     }
@@ -38,7 +38,7 @@ public class BookController {
     public Book updateBook(@RequestBody Book book)  {
         return bookService.saveBook(book);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("deleteBook/{id}")
     void deleteBook(@PathVariable("id")int id)  {
         bookService.deleteBook(id);
     }
