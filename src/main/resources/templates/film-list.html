@@ -11,6 +11,7 @@
 <table>
     <thead>
     <tr>
+        <th>Ürün ID</th>
         <th>Ürün Adı</th>
         <th>Tür</th>
         <th>Çıkış Tarihi</th>
@@ -21,6 +22,7 @@
     </thead>
     <tbody>
     <tr th:each="film, status : ${films}" th:class="${status.odd}? 'odd-row' : 'even-row'">
+        <td th:text="${film.productId}"></td>
         <td th:text="${film.name}"></td>
         <td th:text="${film.genre}"></td>
         <td th:text="${film.releaseDate}"></td>

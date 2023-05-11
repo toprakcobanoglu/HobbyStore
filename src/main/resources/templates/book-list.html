@@ -11,6 +11,7 @@
 <table>
     <thead>
     <tr>
+        <th>Ürün ID</th>
         <th>Ürün Adı</th>
         <th>Tür</th>
         <th>Çıkış Tarihi</th>
@@ -21,6 +22,7 @@
     </thead>
     <tbody>
     <tr th:each="book, status : ${books}" th:class="${status.odd}? 'odd-row' : 'even-row'">
+        <td th:text="${book.productId}"></td>
         <td th:text="${book.name}"></td>
         <td th:text="${book.genre}"></td>
         <td th:text="${book.releaseDate}"></td>
