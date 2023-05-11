@@ -1,27 +1,29 @@
-function deleteBook(button) {
-    // Silinecek kitabın ID'sini al
-    const bookId = button.getAttribute('data-book-id');
+        function sil(id) {
+        if (confirm("Kitabı silmek istediğinizden emin misiniz?")) {
+            fetch("/books/deleteBook/" + id, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Silme başarılı
+                    location.reload();
+                } else {
+                    // Silme başarısız
+                    alert("Kitap silinirken bir hata oluştu.");
+                }
+            })
+            .catch(error => {
+                console.error("Kitap silinirken bir hata oluştu:", error);
+                alert("Kitap silinirken bir hata oluştu.");
+            });
+        }
+    }
 
-    // deleteBook endpoint'ine DELETE isteği gönder
-    fetch(`/books/deleteBook/${bookId}`, {
-        method: 'DELETE'
-    })
-    .then(response => {
-        // Kitap silme işlemi başarılı olduğunda yapılacak işlemler
-        console.log("Kitap başarıyla silindi");
-        // Burada gerekirse sayfayı yenileyebilir veya silinen kitabı tablodan kaldırabilirsiniz
-    })
-    .catch(error => {
-        console.error("Kitap silme işlemi başarısız:", error);
+    // Silme işlemini tetiklemek için deleteButton sınıfına sahip tüm butonları seç
+    const deleteButtons = document.querySelectorAll('.deleteButton');
+    deleteButtons.forEach(button => {
+        const bookId = button.getAttribute('data-book-id');
+        button.addEventListener('click', () => {
+            sil(bookId);
+        });
     });
-}
-
-// Tüm silme butonlarını seç
-const deleteButtons = document.querySelectorAll('.deleteButton');
-
-// Her bir buton için click olayını dinle
-deleteButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        deleteBook(this);
-    });
-});

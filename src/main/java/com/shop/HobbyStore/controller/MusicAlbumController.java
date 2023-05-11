@@ -36,7 +36,7 @@ public class MusicAlbumController {
     public MusicAlbum updateMusicAlbum(@RequestBody MusicAlbum musicAlbum)  {
         return musicAlbumService.saveMusicAlbum(musicAlbum);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("deleteMusicAlbum/{id}")
     void deleteMusicAlbum(@PathVariable("id")int id)    {
         musicAlbumService.deleteMusicAlbum(id);
     }

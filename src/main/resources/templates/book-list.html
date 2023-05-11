@@ -27,8 +27,10 @@
         <td th:text="${book.basePrice}"></td>
         <td th:text="${book.authorName}"></td>
         <td th:text="${book.isbnNumber}"></td>
-        <td class="button-cell"><button class="editButton">Düzenle</button> </td>
-        <td class="button-cell"><button class="deleteButton">Sil</button></td>
+        <td class="button-cell">
+            <button class="editButton" onclick="duzenle()">Düzenle</button> </td>
+        <td class="button-cell">
+            <button class="deleteButton" th:data-book-id="${book.productId}">Sil</button></td>
     </tr>
     </tbody>
 </table>
@@ -53,6 +55,32 @@
 
     <button id="addBookButton" class="addButton">Kitap Ekle</button>
     <script src="script/scriptBook/addBook.js"></script>
+    <script src="script/scriptBook/deleteBook.js"></script>
 </form>
+
+<form id="editBookForm" style="display: none;">
+    <input type="hidden" id="editBookId" name="id">
+    <label for="editBookName">Ürün Adı</label>
+    <input type="text" id="editBookName" name="name">
+
+    <label for="editBookGenre">Tür</label>
+    <input type="text" id="editBookGenre" name="genre">
+
+    <label for="editBookReleaseDate">Çıkış Tarihi</label>
+    <input type="text" id="editBookReleaseDate" name="releaseDate">
+
+    <label for="editBookBasePrice">Fiyat</label>
+    <input type="number" id="editBookBasePrice" name="basePrice">
+
+    <label for="editBookAuthorName">Yazar Adı</label>
+    <input type="text" id="editBookAuthorName" name="authorName">
+
+    <label for="editBookIsbnNumber">ISBN Numarası</label>
+    <input type="number" id="editBookIsbnNumber" name="isbnNumber">
+
+</form>
+<script src="script/scriptBook/editBook.js"></script>
+</body>
+</html>
 </body>
 </html>

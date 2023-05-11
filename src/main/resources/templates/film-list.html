@@ -27,8 +27,10 @@
         <td th:text="${film.basePrice}"></td>
         <td th:text="${film.directorName}"></td>
         <td th:text="${film.imdbRate}"></td>
-        <td class="button-cell"><button class="editButton">Düzenle</button> </td>
-        <td class="button-cell"><button class="deleteButton">Sil</button></td>
+        <td class="button-cell">
+            <button class="editButton">Düzenle</button> </td>
+        <td class="button-cell">
+            <button class="deleteButton" th:data-film-id="${film.productId}">Sil</button></td>
 
     </tr>
     </tbody>
@@ -54,6 +56,7 @@
 
     <button id="addFilmButton" class="addButton">Film Ekle</button>
     <script src="script/scriptFilm/addFilm.js"></script>
+    <script src="script/scriptFilm/deleteFilm.js"></script>
 </form>
 </body>
 </html>

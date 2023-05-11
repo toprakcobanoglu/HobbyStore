@@ -34,11 +34,11 @@ public class BookController {
     public Book saveBook(@RequestBody Book book)    {
         return bookService.saveBook(book);
     }
-    @PutMapping("{id}")
+    @PutMapping("/editBook/{id}")
     public Book updateBook(@RequestBody Book book)  {
         return bookService.saveBook(book);
     }
-    @DeleteMapping("deleteBook/{id}")
+    @DeleteMapping("/deleteBook/{id}")
     void deleteBook(@PathVariable("id")int id)  {
         bookService.deleteBook(id);
     }

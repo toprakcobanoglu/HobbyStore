@@ -27,8 +27,10 @@
     <td th:text="${musicAlbum.basePrice}"></td>
     <td th:text="${musicAlbum.singerName}"></td>
     <td th:text="${musicAlbum.numberOfSongs}"></td>
-    <td class="button-cell"><button class="editButton">Düzenle</button> </td>
-    <td class="button-cell"><button class="deleteButton">Sil</button></td>
+    <td class="button-cell">
+      <button class="editButton">Düzenle</button> </td>
+    <td class="button-cell">
+      <button class="deleteButton" th:data-album-id="${musicAlbum.productId}">Sil</button></td>
 
   </tr>
   </tbody>
@@ -54,6 +56,7 @@
 
   <button id="addAlbumButton" class="addButton">Albüm Ekle</button>
   <script src="script/scriptAlbum/addAlbum.js"></script>
+  <script src="script/scriptAlbum/deleteAlbum.js"></script>
 </form>
 </body>
 </html>
