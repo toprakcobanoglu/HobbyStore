@@ -34,7 +34,7 @@ public class BookController {
     public Book saveBook(@RequestBody Book book)    {
         return bookService.saveBook(book);
     }
-    @PutMapping("/editBook/{id}")
+    @PutMapping("/editBook/{bookId}")
     public Book updateBook(@RequestBody Book book)  {
         return bookService.saveBook(book);
     }

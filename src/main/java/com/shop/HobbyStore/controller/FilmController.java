@@ -34,7 +34,7 @@ public class FilmController {
     public Film saveFilm(@RequestBody Film film)    {
         return filmService.saveFilm(film);
     }
-    @PutMapping("{id}")
+    @PutMapping("/editFilm/{filmId}")
     public Film updateFilm(@RequestBody Film film)   {
         return filmService.saveFilm(film);
     }

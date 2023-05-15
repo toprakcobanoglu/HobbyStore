@@ -30,7 +30,7 @@
         <td th:text="${film.directorName}"></td>
         <td th:text="${film.imdbRate}"></td>
         <td class="button-cell">
-            <button class="editButton">Düzenle</button> </td>
+            <button class="editButton" onclick="duzenleFormunuAc(event)">Düzenle</button> </td>
         <td class="button-cell">
             <button class="deleteButton" th:data-film-id="${film.productId}">Sil</button></td>
 
@@ -48,7 +48,7 @@
     <input type="text" id="releaseDate" name="relaseDate">
 
     <label for="basePrice">Fiyat</label>
-    <input type="number" id="basePrice" name="basePrice">
+    <input type="number" step="any" id="basePrice" name="basePrice">
 
     <label for="directorName">Yönetmen Adı</label>
     <input type="text" id="directorName" name="directorName">
@@ -60,5 +60,29 @@
     <script src="script/scriptFilm/addFilm.js"></script>
     <script src="script/scriptFilm/deleteFilm.js"></script>
 </form>
+
+<form id="editFilmForm" style="display: none;">
+    <input type="hidden" id="editFilmId" name="id">
+    <label for="editFilmName">Ürün Adı</label>
+    <input type="text" id="editFilmName" name="name">
+
+    <label for="editFilmGenre">Tür</label>
+    <input type="text" id="editFilmGenre" name="genre">
+
+    <label for="editFilmReleaseDate">Çıkış Tarihi</label>
+    <input type="text" id="editFilmReleaseDate" name="releaseDate">
+
+    <label for="editFilmBasePrice">Fiyat</label>
+    <input type="number" step="any" id="editFilmBasePrice" name="basePrice">
+
+    <label for="editFilmDirectorName">Yazar Adı</label>
+    <input type="text" id="editFilmDirectorName" name="directorName">
+
+    <label for="editFilmImdbRate">IMDB Skoru</label>
+    <input type="number" step="any" id="editFilmImdbRate" name="imdbRate">
+    <button id="saveButton"  onclick="kaydet()">Kaydet</button>
+
+</form>
+<script src="script/scriptFilm/editFilm.js"></script>
 </body>
 </html>

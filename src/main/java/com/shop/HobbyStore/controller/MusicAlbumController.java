@@ -32,7 +32,7 @@ public class MusicAlbumController {
     public MusicAlbum saveMusicAlbum(@RequestBody MusicAlbum musicAlbum)    {
         return musicAlbumService.saveMusicAlbum(musicAlbum);
     }
-    @PutMapping("{id}")
+    @PutMapping("/editMusicAlbum/{albumId}")
     public MusicAlbum updateMusicAlbum(@RequestBody MusicAlbum musicAlbum)  {
         return musicAlbumService.saveMusicAlbum(musicAlbum);
     }

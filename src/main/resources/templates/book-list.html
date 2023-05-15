@@ -30,7 +30,7 @@
         <td th:text="${book.authorName}"></td>
         <td th:text="${book.isbnNumber}"></td>
         <td class="button-cell">
-            <button class="editButton" onclick="duzenle()">Düzenle</button> </td>
+            <button class="editButton" onclick="duzenleFormunuAc(event)">Düzenle</button> </td>
         <td class="button-cell">
             <button class="deleteButton" th:data-book-id="${book.productId}">Sil</button></td>
     </tr>
@@ -47,7 +47,7 @@
     <input type="text" id="releaseDate" name="releaseDate">
 
     <label for="basePrice">Fiyat</label>
-    <input type="number" id="basePrice" name="basePrice">
+    <input type="number" step="any" id="basePrice" name="basePrice">
 
     <label for="authorName">Yazar Adı</label>
     <input type="text" id="authorName" name="authorName">
@@ -72,13 +72,14 @@
     <input type="text" id="editBookReleaseDate" name="releaseDate">
 
     <label for="editBookBasePrice">Fiyat</label>
-    <input type="number" id="editBookBasePrice" name="basePrice">
+    <input type="number" step="any" id="editBookBasePrice" name="basePrice">
 
     <label for="editBookAuthorName">Yazar Adı</label>
     <input type="text" id="editBookAuthorName" name="authorName">
 
     <label for="editBookIsbnNumber">ISBN Numarası</label>
     <input type="number" id="editBookIsbnNumber" name="isbnNumber">
+    <button id="saveButton" onclick="kaydet()">Kaydet</button>
 
 </form>
 <script src="script/scriptBook/editBook.js"></script>

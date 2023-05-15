@@ -60,5 +60,28 @@
   <script src="script/scriptAlbum/addAlbum.js"></script>
   <script src="script/scriptAlbum/deleteAlbum.js"></script>
 </form>
+<form id="editAlbumForm" style="display: none;">
+  <input type="hidden" id="editAlbumId" name="id">
+  <label for="editAlbumName">Ürün Adı</label>
+  <input type="text" id="editAlbumName" name="name">
+
+  <label for="editAlbumGenre">Tür</label>
+  <input type="text" id="editAlbumGenre" name="genre">
+
+  <label for="editAlbumReleaseDate">Çıkış Tarihi</label>
+  <input type="text" id="editAlbumReleaseDate" name="releaseDate">
+
+  <label for="editAlbumBasePrice">Fiyat</label>
+  <input type="number" step="any" id="editAlbumBasePrice" name="basePrice">
+
+  <label for="editAlbumSingerName">Yazar Adı</label>
+  <input type="text" id="editAlbumSingerName" name="singerName">
+
+  <label for="editAlbumNumberOfSongs">Albümdeki Şarkı Sayısı</label>
+  <input type="number" id="editAlbumNumberOfSongs" name="numberOfSongs">
+  <button id="saveButton" onclick="kaydet()">Kaydet</button>
+
+</form>
+<script src="script/scriptAlbum/editAlbum.js"></script>
 </body>
 </html>

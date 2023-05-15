@@ -78,5 +78,24 @@
                 cursor: pointer;
             }
 
+            #editBookForm {
+              display: none;
+              margin-top: 20px;
+            }
+
+            #editBookForm label {
+              display: block;
+              margin-top: 10px;
+            }
+
+            #editBookForm input {
+              margin-top: 5px;
+            }
+
+            #saveButton {
+              margin-top: 10px;
+            }
+
+
 
 
