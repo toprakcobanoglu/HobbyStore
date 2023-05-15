@@ -1,5 +1,6 @@
 package com.shop.HobbyStore.controller;
 
+import com.shop.HobbyStore.entities.model.Book;
 import com.shop.HobbyStore.entities.model.MusicAlbum;
 import com.shop.HobbyStore.service.services.MusicAlbumService;
 import org.springframework.ui.Model;
@@ -33,8 +34,20 @@ public class MusicAlbumController {
         return musicAlbumService.saveMusicAlbum(musicAlbum);
     }
     @PutMapping("/editMusicAlbum/{albumId}")
-    public MusicAlbum updateMusicAlbum(@RequestBody MusicAlbum musicAlbum)  {
-        return musicAlbumService.saveMusicAlbum(musicAlbum);
+    public MusicAlbum updateMusicAlbum(@PathVariable("albumId") int albumId, @RequestBody MusicAlbum musicAlbum) {
+        MusicAlbum existingAlbum = musicAlbumService.findMusicAlbumById(albumId);
+        if (existingAlbum != null) {
+            existingAlbum.setName(musicAlbum.getName());
+            existingAlbum.setGenre(musicAlbum.getGenre());
+            existingAlbum.setReleaseDate(musicAlbum.getReleaseDate());
+            existingAlbum.setBasePrice(musicAlbum.getBasePrice());
+            existingAlbum.setSingerName(musicAlbum.getSingerName());
+            existingAlbum.setNumberOfSongs(musicAlbum.getNumberOfSongs());
+
+            return musicAlbumService.saveMusicAlbum(existingAlbum);
+        } else {
+            throw new IllegalArgumentException("Album not found with id: " + albumId);
+        }
     }
     @DeleteMapping("deleteMusicAlbum/{id}")
     void deleteMusicAlbum(@PathVariable("id")int id)    {

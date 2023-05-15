@@ -87,5 +87,23 @@
                 cursor: pointer;
             }
 
+            #editFilmForm {
+                          display: none;
+                          margin-top: 20px;
+                        }
+
+                        #editFilmForm label {
+                          display: block;
+                          margin-top: 10px;
+                        }
+
+                        #editFilmForm input {
+                          margin-top: 5px;
+                        }
+
+                        #saveButton {
+                          margin-top: 10px;
+                        }
+
 
 

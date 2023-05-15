@@ -30,7 +30,7 @@
     <td th:text="${musicAlbum.singerName}"></td>
     <td th:text="${musicAlbum.numberOfSongs}"></td>
     <td class="button-cell">
-      <button class="editButton">Düzenle</button> </td>
+      <button class="editButton" onclick="duzenleFormunuAc(event)">Düzenle</button> </td>
     <td class="button-cell">
       <button class="deleteButton" th:data-album-id="${musicAlbum.productId}">Sil</button></td>
     <td class="button-cell">

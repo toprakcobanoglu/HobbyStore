@@ -87,5 +87,23 @@
                 cursor: pointer;
             }
 
+            #editAlbumForm {
+                          display: none;
+                          margin-top: 20px;
+                        }
+
+                        #editAlbumForm label {
+                          display: block;
+                          margin-top: 10px;
+                        }
+
+                        #editAlbumForm input {
+                          margin-top: 5px;
+                        }
+
+                        #saveButton {
+                          margin-top: 10px;
+                        }
+
 
 

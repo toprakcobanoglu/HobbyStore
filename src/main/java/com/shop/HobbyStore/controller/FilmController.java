@@ -1,5 +1,6 @@
 package com.shop.HobbyStore.controller;
 
+import com.shop.HobbyStore.entities.model.Book;
 import com.shop.HobbyStore.entities.model.Film;
 import com.shop.HobbyStore.service.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,20 @@ public class FilmController {
         return filmService.saveFilm(film);
     }
     @PutMapping("/editFilm/{filmId}")
-    public Film updateFilm(@RequestBody Film film)   {
-        return filmService.saveFilm(film);
+    public Film updateFilm(@PathVariable("filmId") int filmId, @RequestBody Film film) {
+        Film existingFilm = filmService.findFilmById(filmId);
+        if (existingFilm != null) {
+            existingFilm.setName(film.getName());
+            existingFilm.setGenre(film.getGenre());
+            existingFilm.setReleaseDate(film.getReleaseDate());
+            existingFilm.setBasePrice(film.getBasePrice());
+            existingFilm.setDirectorName(film.getDirectorName());
+            existingFilm.setImdbRate(film.getImdbRate());
+
+            return filmService.saveFilm(existingFilm);
+        } else {
+            throw new IllegalArgumentException("Book not found with id: " + filmId);
+        }
     }
     @DeleteMapping("deleteFilm/{id}")
     void deleteFilm(@PathVariable("id")int id)  {

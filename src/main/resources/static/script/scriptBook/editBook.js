@@ -1,4 +1,3 @@
-// Düzenle butonuna tıklandığında formu açar
 function duzenleFormunuAc(event) {
   // Düzenleme formunu göster
   document.getElementById("addBookForm").style.display = "none";
@@ -23,59 +22,39 @@ function duzenleFormunuAc(event) {
   document.getElementById("editBookAuthorName").value = bookAuthorName;
   document.getElementById("editBookIsbnNumber").value = bookIsbnNumber;
 
-  document.getElementById("saveButton").addEventListener("click", kaydet);
-}
+  // Kaydet butonuna tıklandığında düzenlemeleri kaydet
+  document.getElementById("saveButton").addEventListener("click", function() {
+    // Düzenleme formundaki verileri al
+    var updatedBook = {
+      id: bookId,
+      name: document.getElementById("editBookName").value,
+      genre: document.getElementById("editBookGenre").value,
+      releaseDate: document.getElementById("editBookReleaseDate").value,
+      basePrice: document.getElementById("editBookBasePrice").value,
+      authorName: document.getElementById("editBookAuthorName").value,
+      isbnNumber: document.getElementById("editBookIsbnNumber").value
+    };
 
-// Tüm düzenle butonlarına tıklama olayı ataması yapar
-var editButtons = document.getElementsByClassName("editButton");
-for (var i = 0; i < editButtons.length; i++) {
-  editButtons[i].addEventListener("click", duzenleFormunuAc);
-}
-
-// Kaydet butonuna tıklandığında düzenlemeleri kaydet
-function kaydet() {
-  // Düzenleme formundaki verileri al
-  var bookId = document.getElementById("editBookId").value;
-  var bookName = document.getElementById("editBookName").value;
-  var bookGenre = document.getElementById("editBookGenre").value;
-  var bookReleaseDate = document.getElementById("editBookReleaseDate").value;
-  var bookBasePrice = document.getElementById("editBookBasePrice").value;
-  var bookAuthorName = document.getElementById("editBookAuthorName").value;
-  var bookIsbnNumber = document.getElementById("editBookIsbnNumber").value;
-
-  // AJAX isteği için veri nesnesini oluştur
-  var bookData = {
-    productId: bookId,
-    name: bookName,
-    genre: bookGenre,
-    releaseDate: bookReleaseDate,
-    basePrice: bookBasePrice,
-    authorName: bookAuthorName,
-    isbnNumber: bookIsbnNumber
-  };
-
-  // PUT işlemi için AJAX isteği
-  fetch(`/editBook/${bookId}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(bookData),
-  })
-    .then(response => {
-      if (response.ok) {
-        console.log('Düzenleme kaydedildi.');
-        // Gerekli diğer işlemleri burada gerçekleştirebilirsiniz
-      } else {
+    // PUT işlemi için AJAX isteği
+    fetch(`/books/editBook/${bookId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedBook),
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log('Düzenleme kaydedildi.');
+          // Gerekli diğer işlemleri burada gerçekleştirebilirsiniz
+        } else {
+          console.log('Düzenleme kaydedilirken bir hata oluştu.');
+          // Hata işleme veya kullanıcıya geri bildirim için gerekli diğer işlemleri burada gerçekleştirebilirsiniz
+        }
+      })
+      .catch(error => {
         console.log('Düzenleme kaydedilirken bir hata oluştu.');
         // Hata işleme veya kullanıcıya geri bildirim için gerekli diğer işlemleri burada gerçekleştirebilirsiniz
-      }
-    })
-    .catch(error => {
-      console.log('Düzenleme kaydedilirken bir hata oluştu.');
-      // Hata işleme veya kullanıcıya geri bildirim için gerekli diğer işlemleri burada gerçekleştirebilirsiniz
-    });
-
+      });
+  });
 }
-
-
