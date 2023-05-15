@@ -22,6 +22,8 @@ function duzenleFormunuAc(event) {
   document.getElementById("editBookBasePrice").value = bookBasePrice;
   document.getElementById("editBookAuthorName").value = bookAuthorName;
   document.getElementById("editBookIsbnNumber").value = bookIsbnNumber;
+
+  document.getElementById("saveButton").addEventListener("click", kaydet);
 }
 
 // Tüm düzenle butonlarına tıklama olayı ataması yapar
@@ -43,7 +45,7 @@ function kaydet() {
 
   // AJAX isteği için veri nesnesini oluştur
   var bookData = {
-    id: bookId,
+    productId: bookId,
     name: bookName,
     genre: bookGenre,
     releaseDate: bookReleaseDate,

@@ -35,9 +35,22 @@ public class BookController {
         return bookService.saveBook(book);
     }
     @PutMapping("/editBook/{bookId}")
-    public Book updateBook(@RequestBody Book book)  {
-        return bookService.saveBook(book);
+    public Book updateBook(@PathVariable("bookId") int bookId, @RequestBody Book book) {
+        Book existingBook = bookService.findBookById(bookId);
+        if (existingBook != null) {
+            existingBook.setName(book.getName());
+            existingBook.setGenre(book.getGenre());
+            existingBook.setReleaseDate(book.getReleaseDate());
+            existingBook.setBasePrice(book.getBasePrice());
+            existingBook.setAuthorName(book.getAuthorName());
+            existingBook.setIsbnNumber(book.getIsbnNumber());
+
+            return bookService.saveBook(existingBook);
+        } else {
+            throw new IllegalArgumentException("Book not found with id: " + bookId);
+        }
     }
+
     @DeleteMapping("/deleteBook/{id}")
     void deleteBook(@PathVariable("id")int id)  {
         bookService.deleteBook(id);
