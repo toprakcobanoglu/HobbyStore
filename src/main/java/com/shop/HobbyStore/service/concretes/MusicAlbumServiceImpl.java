@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MusicAlbumManager implements MusicAlbumService {
+public class MusicAlbumServiceImpl implements MusicAlbumService {
     private final MusicAlbumRepository musicAlbumRepository;
 
-    public MusicAlbumManager(MusicAlbumRepository musicAlbumRepository) {
+    public MusicAlbumServiceImpl(MusicAlbumRepository musicAlbumRepository) {
         this.musicAlbumRepository = musicAlbumRepository;
     }
 

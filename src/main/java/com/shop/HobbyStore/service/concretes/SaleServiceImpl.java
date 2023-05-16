@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SaleManager implements SaleService {
+public class SaleServiceImpl implements SaleService {
     private final SaleRepository saleRepository;
 
-    public SaleManager(SaleRepository saleRepository) {
+    public SaleServiceImpl(SaleRepository saleRepository) {
         this.saleRepository = saleRepository;
     }
 

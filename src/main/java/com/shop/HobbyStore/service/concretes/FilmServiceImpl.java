@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FilmManager implements FilmService {
+public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
 
-    public FilmManager(FilmRepository filmRepository) {
+    public FilmServiceImpl(FilmRepository filmRepository) {
         this.filmRepository = filmRepository;
     }
 

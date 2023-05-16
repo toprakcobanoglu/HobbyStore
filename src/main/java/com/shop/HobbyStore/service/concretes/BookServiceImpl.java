@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookManager implements BookService {
+public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
-    public BookManager(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 

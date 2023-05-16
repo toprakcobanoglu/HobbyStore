@@ -12,12 +12,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductManager implements ProductService {
+public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final SaleRepository saleRepository;
 
 
-    public ProductManager(ProductRepository productRepository, SaleRepository saleRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, SaleRepository saleRepository) {
         this.productRepository = productRepository;
         this.saleRepository = saleRepository;
     }
