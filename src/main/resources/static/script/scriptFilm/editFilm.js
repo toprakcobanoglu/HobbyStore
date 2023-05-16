@@ -1,9 +1,9 @@
 function duzenleFormunuAc(event) {
-  // Düzenleme formunu göster
+
   document.getElementById("addFilmForm").style.display = "none";
   document.getElementById("editFilmForm").style.display = "block";
 
-  // Seçilen filmin verilerini al
+
   var selectedRow = event.target.parentNode.parentNode;
   var filmId = selectedRow.querySelector("td:nth-child(1)").textContent;
   var filmName = selectedRow.querySelector("td:nth-child(2)").textContent;
@@ -13,7 +13,6 @@ function duzenleFormunuAc(event) {
   var filmDirectorName = selectedRow.querySelector("td:nth-child(6)").textContent;
   var filmImdbRate = selectedRow.querySelector("td:nth-child(7)").textContent;
 
-  // Düzenleme formundaki alanlara verileri yerleştir
   document.getElementById("editFilmId").value = filmId;
   document.getElementById("editFilmName").value = filmName;
   document.getElementById("editFilmGenre").value = filmGenre;
@@ -22,9 +21,8 @@ function duzenleFormunuAc(event) {
   document.getElementById("editFilmDirectorName").value = filmDirectorName;
   document.getElementById("editFilmImdbRate").value = filmImdbRate;
 
-  // Kaydet butonuna tıklandığında düzenlemeleri kaydet
   document.getElementById("saveButton").addEventListener("click", function() {
-    // Düzenleme formundaki verileri al
+
     var updatedFilm = {
       id: filmId,
       name: document.getElementById("editFilmName").value,
@@ -35,7 +33,7 @@ function duzenleFormunuAc(event) {
       imdbRate: document.getElementById("editFilmImdbRate").value
     };
 
-    // PUT işlemi için AJAX isteği
+
     fetch(`/films/editFilm/${filmId}`, {
       method: 'PUT',
       headers: {
@@ -46,15 +44,15 @@ function duzenleFormunuAc(event) {
       .then(response => {
         if (response.ok) {
           console.log('Düzenleme kaydedildi.');
-          // Gerekli diğer işlemleri burada gerçekleştirebilirsiniz
+
         } else {
           console.log('Düzenleme kaydedilirken bir hata oluştu.');
-          // Hata işleme veya kullanıcıya geri bildirim için gerekli diğer işlemleri burada gerçekleştirebilirsiniz
+
         }
       })
       .catch(error => {
         console.log('Düzenleme kaydedilirken bir hata oluştu.');
-        // Hata işleme veya kullanıcıya geri bildirim için gerekli diğer işlemleri burada gerçekleştirebilirsiniz
+
       });
   });
 }

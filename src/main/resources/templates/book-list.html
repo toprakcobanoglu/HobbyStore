@@ -33,9 +33,29 @@
             <button class="editButton" onclick="duzenleFormunuAc(event)">Düzenle</button> </td>
         <td class="button-cell">
             <button class="deleteButton" th:data-book-id="${book.productId}">Sil</button></td>
-
+        <td class="button-cell">
+            <button class="addBoxButton" onclick="sepeteEkle('${book.productId}' , '${book.name}' , '${book.basePrice}')">Sepete Ekle</button> </td>
     </tr>
+
     </tbody>
+
+    <table>
+        <thead>
+        <h2>Sepet</h2>
+        <tr>
+            <th>Ürün ID</th>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="sepetFormu"></tbody>
+
+    </table>
+    <p>Toplam Fiyat: <span id="toplamFiyat">0.00</span></p>
+    <td class="button-cell">
+        <button class="purchaseButton">Satın Al</button>
+    </td>
 </table>
 <form id="addBookForm">
     <label for="name">Ürün Adı</label>
@@ -84,6 +104,7 @@
 
 </form>
 <script src="script/scriptBook/editBook.js"></script>
+<script src="script/addToCart.js"></script>
 </body>
 </html>
 
