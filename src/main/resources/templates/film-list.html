@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>Filmler</h1>
+
 <table>
     <thead>
     <tr>
@@ -18,6 +19,7 @@
         <th>Fiyat</th>
         <th>Yönetmen Adı</th>
         <th>IMDB Skoru</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -30,13 +32,40 @@
         <td th:text="${film.directorName}"></td>
         <td th:text="${film.imdbRate}"></td>
         <td class="button-cell">
-            <button class="editButton" onclick="duzenleFormunuAc(event)">Düzenle</button> </td>
+            <button class="editButton" onclick="duzenleFormunuAc(event)">Düzenle</button>
+        </td>
         <td class="button-cell">
-            <button class="deleteButton" th:data-film-id="${film.productId}">Sil</button></td>
-
+            <button class="deleteButton" th:data-book-id="${film.productId}">Sil</button>
+        </td>
+        <td class="button-cell">
+            <button class="addBoxButton" onclick="sepeteEkle('${film.productId}', '${film.name}', '${film.basePrice}')">Sepete Ekle</button>
+        </td>
     </tr>
     </tbody>
 </table>
+
+<h2>Sepet</h2>
+<table id="sepetFormu">
+    <thead>
+    <tr>
+        <th>Ürün ID</th>
+        <th>Ürün Adı</th>
+        <th>Fiyat</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${purchasedProducts}">
+        <td th:text="${product.productId}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.basePrice}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Toplam Fiyat: <span id="toplamFiyat">0.00</span></p>
+
+<button class="purchaseButton">Satın Al</button>
+
 <form id="addFilmForm">
     <label for="name">Ürün Adı</label>
     <input type="text" id="name" name="name">
@@ -50,15 +79,13 @@
     <label for="basePrice">Fiyat</label>
     <input type="number" step="any" id="basePrice" name="basePrice">
 
-    <label for="directorName">Yazar Adı</label>
+    <label for="directorName">Yönetmen Adı</label>
     <input type="text" id="directorName" name="directorName">
 
-    <label for="imdbRate">ISBN Numarası</label>
+    <label for="imdbRate">IMDB Skoru</label>
     <input type="number" id="imdbRate" name="imdbRate">
 
     <button id="addFilmButton" class="addButton">Film Ekle</button>
-    <script src="script/scriptFilm/addFilm.js"></script>
-    <script src="script/scriptFilm/deleteFilm.js"></script>
 </form>
 
 <form id="editFilmForm" style="display: none;">
@@ -78,12 +105,15 @@
     <label for="editFilmDirectorName">Yönetmen Adı</label>
     <input type="text" id="editFilmDirectorName" name="directorName">
 
-    <label for="editFilmImdbRate">IMDB Skoru</label>
-    <input type="number" step="any" id="editFilmImdbRate" name="imdbRate">
-    <button id="saveButton" onclick="kaydet()">Kaydet</button>
+    <label for="editFilmImdbRate">IMDB Rate</label>
+    <input type="number" id="editFilmImdbRate" name="imdbRate">
 
+    <button id="saveButton" onclick="kaydet()">Kaydet</button>
 </form>
+
+<script src="script/scriptFilm/addFilm.js"></script>
+<script src="script/scriptFilm/deleteFilm.js"></script>
 <script src="script/scriptFilm/editFilm.js"></script>
+<script src="script/addToCart.js"></script>
 </body>
 </html>
-
