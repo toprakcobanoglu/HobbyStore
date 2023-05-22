@@ -1,5 +1,5 @@
 function duzenleFormunuAc(event) {
-  // Düzenleme formunu göster
+  // Düzenleme formunu goster
   document.getElementById("addBookForm").style.display = "none";
   document.getElementById("editBookForm").style.display = "block";
 
@@ -13,7 +13,7 @@ function duzenleFormunuAc(event) {
   var bookAuthorName = selectedRow.querySelector("td:nth-child(6)").textContent;
   var bookIsbnNumber = selectedRow.querySelector("td:nth-child(7)").textContent;
 
-  // Düzenleme formundaki alanlara verileri yerleştir
+  // Düzenleme formundaki kutulara verileri yerleştir
   document.getElementById("editBookId").value = bookId;
   document.getElementById("editBookName").value = bookName;
   document.getElementById("editBookGenre").value = bookGenre;
@@ -35,7 +35,6 @@ function duzenleFormunuAc(event) {
       isbnNumber: document.getElementById("editBookIsbnNumber").value
     };
 
-    // PUT işlemi için AJAX isteği
     fetch(`/books/editBook/${bookId}`, {
       method: 'PUT',
       headers: {
@@ -46,15 +45,12 @@ function duzenleFormunuAc(event) {
       .then(response => {
         if (response.ok) {
           console.log('Düzenleme kaydedildi.');
-          // Gerekli diğer işlemleri burada gerçekleştirebilirsiniz
         } else {
           console.log('Düzenleme kaydedilirken bir hata oluştu.');
-          // Hata işleme veya kullanıcıya geri bildirim için gerekli diğer işlemleri burada gerçekleştirebilirsiniz
         }
       })
       .catch(error => {
         console.log('Düzenleme kaydedilirken bir hata oluştu.');
-        // Hata işleme veya kullanıcıya geri bildirim için gerekli diğer işlemleri burada gerçekleştirebilirsiniz
       });
   });
 }

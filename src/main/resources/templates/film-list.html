@@ -37,34 +37,9 @@
         <td class="button-cell">
             <button class="deleteButton" th:data-book-id="${film.productId}">Sil</button>
         </td>
-        <td class="button-cell">
-            <button class="addBoxButton" onclick="sepeteEkle('${film.productId}', '${film.name}', '${film.basePrice}')">Sepete Ekle</button>
-        </td>
     </tr>
     </tbody>
 </table>
-
-<h2>Sepet</h2>
-<table id="sepetFormu">
-    <thead>
-    <tr>
-        <th>Ürün ID</th>
-        <th>Ürün Adı</th>
-        <th>Fiyat</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="product : ${purchasedProducts}">
-        <td th:text="${product.productId}"></td>
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.basePrice}"></td>
-    </tr>
-    </tbody>
-</table>
-
-<p>Toplam Fiyat: <span id="toplamFiyat">0.00</span></p>
-
-<button class="purchaseButton">Satın Al</button>
 
 <form id="addFilmForm">
     <label for="name">Ürün Adı</label>

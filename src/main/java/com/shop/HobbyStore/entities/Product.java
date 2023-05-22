@@ -36,8 +36,5 @@ public abstract class Product {
     public String getDiscriminatorType()    {
         return this.getClass().getAnnotation(DiscriminatorValue.class).value();
     }
-
     public abstract double getPureProfit();
-
-    //public abstract double getPureProfit();
 }
