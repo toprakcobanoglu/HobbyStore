@@ -47,14 +47,14 @@ public class ProductServiceImpl implements ProductService {
         double totalPrice = findTotalAmount(products);
         double sumEarlyBirdPrice = sumEarlyBirdPrice(products);
 
-        //Kampanya uygulanmasi icin sepetteki urun sayisinin 2 veya 2 den fazla olmasi gerekiyor
+        //Kampanya uygulanmasi icin sepetteki urun sayisinin 2 veya 2 den fazla olmasi gerekir
         double twoItemCampaignDiscountAmount = products.size() >= 2 ? calculateTwoItemsDiscount(products) : 0d;
         double twoBooksCampaignDiscountAmount = books.size() >= 2 ? calculateTwoBooksDiscount(books) : 0d;
 
         double finalTotalPrice = (totalPrice - Math.max(twoBooksCampaignDiscountAmount, twoItemCampaignDiscountAmount));
         double pureProfit = finalTotalPrice - sumEarlyBirdPrice;
 
-        //Id ve count bilgisi girilerek request atildiginda "Sale" tablosuna satislar kaydediliyor
+        //Id ve count bilgisi girilerek request atildiginda "Sale" tablosuna satislar kaydedilir
         //Body : "productId" ve "count"
         Sale sale = new Sale();
         sale.setFinalTotalPrice(finalTotalPrice);
