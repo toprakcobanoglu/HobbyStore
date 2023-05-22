@@ -53,6 +53,7 @@ public class ProductServiceImpl implements ProductService {
         double finalTotalPrice = (totalPrice - Math.max(twoBooksCampaignDiscountAmount, twoItemCampaignDiscountAmount));
         double pureProfit = finalTotalPrice - sumEarlyBirdPrice;
 
+        //Id ve count bilgisi girilerek request atildiginda "Sale" tablosuna satislar kaydediliyor
         Sale sale = new Sale();
         sale.setFinalTotalPrice(finalTotalPrice);
         sale.setPureProfit(pureProfit);
@@ -75,22 +76,27 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    //Satislardan elde edilen kar bulmak icin, sepete eklenen urunlerin gelis fiyatlarini toplama
     private double sumEarlyBirdPrice(List<Product> products)    {
         return products.stream().mapToDouble(Product::getEarlyBirdPrice).sum();
     }
 
+    //Sepetteki urunlerin toplam tutari
     private double findTotalAmount(List<Product> products) {
         return products.stream().mapToDouble(Product::getFinalPrice).sum();
     }
 
+    //Urun kampanyasi hesaplama
     private double calculateTwoItemsDiscount(List<Product> products) {
         return findCheapestProductPrice(products) / 2;
     }
 
+    //Kitap kampanyasi hesaplama
     private double calculateTwoBooksDiscount(List<Product> books) {
         return findCheapestProductPrice(books);
     }
 
+    //Urunlerin arasindaki en ucuz fiyatli urunu bulma
     private double findCheapestProductPrice(List<Product> products) {
         return products.stream()
                 .min(Comparator.comparingDouble(Product::getFinalPrice))
