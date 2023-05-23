@@ -38,11 +38,26 @@
             <button class="deleteButton" th:data-book-id="${film.productId}">Sil</button>
         </td>
         <td class="button-cell">
-            <button class="addBoxButton">Sepete Ekle</button>
+            <button class="addBoxButton" onclick="addToCart(event)">Sepete Ekle</button>
         </td>
     </tr>
     </tbody>
 </table>
+
+<h2>Sepet</h2>
+<form id="cartForm" action="/purchase" method="post">
+    <table id="cartTable">
+        <thead>
+        <tr>
+            <th>Ürün ID</th>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button type="submit">Satın Al</button>
+</form>
 
 <form id="addFilmForm">
     <label for="name">Ürün Adı</label>
