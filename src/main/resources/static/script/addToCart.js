@@ -40,7 +40,7 @@ function addToCartFunction(productId, productName, productPrice) {
 
 function purchase() {
 var cartTotalElement = document.getElementById("cartTotal");
-  var cartTotal = parseFloat(cartTotalElement.innerText).toFixed(2);    //2 haneli olarak goster
+  var cartTotal = parseFloat(cartTotalElement.innerText).toFixed(2);    //Fiyati 2 haneli olarak goster
   var cartItems = document.getElementById("cartTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr"); //sepet formundaki urunler
 
     //Sepet formuna eklenen tum urunleri gezen dongu
