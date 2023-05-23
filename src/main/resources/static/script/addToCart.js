@@ -37,3 +37,41 @@ function addToCartFunction(productId, productName, productPrice) {
   // Tabloya yeni satırı ekle
   cartTable.getElementsByTagName("tbody")[0].appendChild(newRow);
 }
+
+function purchase() {
+var cartTotalElement = document.getElementById("cartTotal");
+  var cartTotal = parseFloat(cartTotalElement.innerText).toFixed(2);    //2 haneli olarak goster
+  var cartItems = document.getElementById("cartTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr"); //sepet formundaki urunler
+
+    //Sepet formuna eklenen tum urunleri gezen dongu
+    var purchaseDetails = "Satın Alınan Ürünler : \n";
+    for (var i=0; i<cartItems.length; i++)  {
+        var productId = cartItems[i].cells[0].innerText;    //Sepet formunun ilk sutunundan bilgiyi alir[0]
+        var productName = cartItems[i].cells[1].innerText;  //  "      "     ikinci sutunundan bilgiyi alir[1]
+        var productPrice = cartItems[i].cells[2].innerText; //  "      "     ucuncu sutunundan bilgiyi alir[2]
+        purchaseDetails += "Ürün ID: " + productId + "Ürün Adı: " + productName + "Fiyat: " + productPrice + "\n";
+  }
+  alert(purchaseDetails);   //Sayfada cikacak bilgilendirme uyarisi
+
+ var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/purchase/total", true);    // purchase/total yolu ile post istegi gonder
+  xhr.setRequestHeader("Content-Type", "application/json"); //istek icerigi Json formati
+
+  // Satın alınan urunlerin bilgilerini JSON formatindaki diziye ekle
+  var purchasedProducts = [];
+  for (var i=0; i < cartItems.length; i++)  {
+    var productId = cartItems[i].cells[0].innerText;
+    var productName = cartItems[i].cells[1].innerText;
+    var productPrice = cartItems[i].cells[2].innerText;
+
+    purchasedProducts.push({
+        productId: productId,
+        productName: productName,
+        productPrice: productPrice
+    });
+  }
+  // UI tarafindaki satin alinan bilgileri purchasedProducts metodunun taniyacagi sekilde(productId ve count) JSON formatinda gonderme
+  xhr.send(JSON.stringify(purchasedProducts));
+}
+
+

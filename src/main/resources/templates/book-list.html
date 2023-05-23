@@ -45,7 +45,7 @@
 </table>
 
 <h2>Sepet</h2>
-<form id="cartForm" action="/purchase" method="post">
+<form id="cartForm" action="/purchase/total" method="post">
     <table id="cartTable">
         <thead>
         <tr>
@@ -56,9 +56,13 @@
         </thead>
         <tbody></tbody>
     </table>
-    <button type="submit">Satın Al</button>
+    <br>
+    <button type="button" onclick="purchase()">Satın Al</button>
 </form>
-
+<br>
+<br>
+<div id="cartTotal"></div>
+<br>
 <form id="addBookForm">
     <label for="name">Ürün Adı</label>
     <input type="text" id="name" name="name">
