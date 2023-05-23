@@ -1,8 +1,8 @@
-function addToCart(event) {
+function addToCart(event)  {    //(event) tiklanan butonu temsil eder
   var button = event.target;
   var row = button.parentNode.parentNode;
 
-  var productId = row.cells[0].innerText;       //[0] --> 1. sutun(productId)
+  var productId = row.cells[0].innerText;       //[0] --> 1. sutun(productId)   row.cells(satirin hucrelerini icerir)
   var productName = row.cells[1].innerText;     //[1] --> 2. sutun(name)
   var productPrice = row.cells[4].innerText;    //[4] --> 5. sutun(price)
 
@@ -14,10 +14,10 @@ function addToCart(event) {
 function addToCartFunction(productId, productName, productPrice) {
 
   // Sepet tablosunu seç
-  var cartTable = document.getElementById("cartTable");
+  var cartTable = document.getElementById("cartTable"); //"cartTable" tablosunu sec
 
   // Yeni bir tablo satırı oluştur
-  var newRow = document.createElement("tr");
+  var newRow = document.createElement("tr");    //newRow satiri html sayfasindaki tbody ye eklenir
 
   // Ürün ID hücresi oluştur
   var productIdCell = document.createElement("td");
