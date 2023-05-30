@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findAllById(productIds);
         List<Product> books = findPurchasedBooks(products);
 
-        double totalPrice = findTotalAmount(products);
+        double totalPrice = findTotalAmount(products, purchasedProductMap);
         double sumEarlyBirdPrice = sumEarlyBirdPrice(products);
 
         //Kampanya uygulanmasi icin sepetteki urun sayisinin 2 veya 2 den fazla olmasi gerekir
@@ -64,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Product product : products)    {
+
             stringBuilder.append("Product Name --> ").append(product.getName())
                     .append(" : ").append(product.getFinalPrice()).append("\n");
         }
@@ -85,8 +86,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     //Sepetteki urunlerin toplam tutari
-    private double findTotalAmount(List<Product> products) {
-        return products.stream().mapToDouble(Product::getFinalPrice).sum();
+    private double findTotalAmount(List<Product> products, Map<Integer, PurchasedProduct> purchasedProductMap) {
+        double sum = 0;
+        for (Product product : products)    {
+            int count = purchasedProductMap.get(product.getProductId()).getCount();
+            sum += product.getFinalPrice() * count;
+        }
+        return sum;
     }
 
     //Urun kampanyasi hesaplama
