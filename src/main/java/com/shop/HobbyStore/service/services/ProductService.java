@@ -2,7 +2,6 @@ package com.shop.HobbyStore.service.services;
 
 import com.shop.HobbyStore.entities.Product;
 import com.shop.HobbyStore.entities.PurchasedProduct;
-import com.shop.HobbyStore.entities.Sale;
 
 import java.util.List;
 
