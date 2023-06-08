@@ -27,7 +27,6 @@ function addFilm() {
     })
     .then(response => response.json())
     .then(data => {
-        // Film ekleme işlemi başarılı olduğunda yapılacak işlemler
         console.log("Film başarıyla eklendi:", data);
     })
     .catch(error => {

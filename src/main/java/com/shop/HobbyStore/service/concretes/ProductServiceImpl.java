@@ -44,12 +44,17 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findAllById(productIds);
         List<Product> books = findPurchasedBooks(products);
 
+        List<Integer> purchasedBookIds = books.stream().map(Product::getProductId).toList();
+
         double totalPrice = findTotalAmount(products, purchasedProductMap);
         double sumEarlyBirdPrice = sumEarlyBirdPrice(products);
 
+        int productSize = purchasedProducts.stream().mapToInt(PurchasedProduct::getCount).sum();
+        int bookSize = purchasedProducts.stream().filter(pp -> purchasedBookIds.contains(pp.getProductId())).mapToInt(PurchasedProduct::getCount).sum();
+
         //Kampanya uygulanmasi icin sepetteki urun sayisinin 2 veya 2 den fazla olmasi gerekir
-        double twoItemCampaignDiscountAmount = products.size() >= 2 ? calculateTwoItemsDiscount(products) : 0d;
-        double twoBooksCampaignDiscountAmount = books.size() >= 2 ? calculateTwoBooksDiscount(books) : 0d;
+        double twoItemCampaignDiscountAmount = productSize >= 2 ? calculateTwoItemsDiscount(products) : 0d;
+        double twoBooksCampaignDiscountAmount = bookSize >= 2 ? calculateTwoBooksDiscount(books) : 0d;
 
         double finalTotalPrice = (totalPrice - Math.max(twoBooksCampaignDiscountAmount, twoItemCampaignDiscountAmount));
         double pureProfit = finalTotalPrice - sumEarlyBirdPrice;
